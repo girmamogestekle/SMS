@@ -63,9 +63,7 @@ SMS is still in progress.
 **Credits**
 
 List of contributors:
-1. azemedkun-git
-2. code2buptodate
-3. GirmaMogesTekle12
+1. girmamogestekle
 
 
 **License**
