@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="course-service" />
+        <module name="teacher-service" />
+        <module name="student-service" />
+        <module name="school-service" />
+        <module name="notification-service" />
+        <module name="discovery-service" />
+        <module name="parent-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common-libs" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common-libs" options="-parameters" />
+      <module name="common-libs.main" options="-parameters" />
+      <module name="common-libs.test" options="-parameters" />
+      <module name="course-service" options="-parameters" />
+      <module name="discovery-service" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
+      <module name="parent-service" options="-parameters" />
+      <module name="school-service" options="-parameters" />
+      <module name="student-service" options="-parameters" />
+      <module name="teacher-service" options="-parameters" />
+    </option>
+  </component>
+</project>

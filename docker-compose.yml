@@ -1,0 +1,48 @@
+version: "3.9"
+
+networks:
+  monitoring:
+    driver: bridge
+
+services:
+  loki:
+    image: grafana/loki:2.9.8
+    container_name: loki
+    volumes:
+      - ./monitoring/loki/config.yml:/etc/loki/config.yml
+      - ./logs:/var/log/sms
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/config.yml
+    networks: [monitoring]
+
+  promtail:
+    image: grafana/promtail:2.9.8
+    container_name: promtail
+    volumes:
+      - ./monitoring/promtail/config.yml:/etc/promtail/config.yml
+      - ./logs:/var/log/sms
+    command: -config.file=/etc/promtail/config.yml
+    networks: [monitoring]
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: prometheus
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks: [monitoring]
+
+  grafana:
+    image: grafana/grafana:11.1.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+    depends_on: [loki, prometheus]
+    networks: [monitoring]
